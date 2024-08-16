@@ -9,12 +9,12 @@ import Foundation
 import Alamofire
 
 protocol NetworkManagerProtocol {
-    func getLeaguesFromAPI(sport : String ,handler : @escaping (([Leagues]) -> Void))
+    func getLeaguesFromAPI<generic : Codable>(type: generic.Type , sport : String ,handler : @escaping (generic?) -> Void)
 }
 
 class NetworkManager : NetworkManagerProtocol {
     
-    func getLeaguesFromAPI(sport : String ,handler : @escaping (([Leagues]) -> Void)) {
+    func getLeaguesFromAPI<generic : Codable>(type: generic.Type , sport : String ,handler : @escaping (generic?) -> Void) {
         let apiKey = "2c28d4947373c9aad33c4b48c0f99c79ce4469f4c59f207b0ee9d8f73d2ae9e2"
         let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)")
         guard let url = url else { return }
@@ -26,8 +26,8 @@ class NetworkManager : NetworkManagerProtocol {
             case .success(let data) :
                 do{
                     let jsonDecoder = JSONDecoder()
-                    let leagues = try jsonDecoder.decode(LeaguesResponse.self, from: data)
-                    handler(leagues.result)
+                    let data = try jsonDecoder.decode(type, from: data)
+                    handler(data)
                 }catch{
                     print("Error")
                 }
@@ -37,4 +37,5 @@ class NetworkManager : NetworkManagerProtocol {
         }
     }
 }
+
 
