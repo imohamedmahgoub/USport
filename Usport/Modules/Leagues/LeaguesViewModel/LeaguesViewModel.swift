@@ -45,9 +45,9 @@ class LeaguesViewModel: LeaguesViewModelProtocol {
     }
     func getData() {
         
-        networkManager.getLeaguesFromAPI(sport: sport) {[weak self] leagues in
+        networkManager.getLeaguesFromAPI(type:LeaguesResponse.self , sport: sport) {[weak self] leagues in
             guard let self else { return }
-            self.leagues = leagues
+            self.leagues = leagues?.result ?? []
             self.bindDataToViewController()
         }
     }
