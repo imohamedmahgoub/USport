@@ -16,7 +16,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.RegisterNib(cell: TableViewCell.self)
-        let networkIndicator = UIActivityIndicatorView(style: .gray)
+        let networkIndicator = UIActivityIndicatorView(style: .medium)
         networkIndicator.center = view.center
         networkIndicator.startAnimating()
         view.addSubview(networkIndicator)

@@ -26,14 +26,10 @@ class LeaguesViewModel: LeaguesViewModelProtocol {
         self.sport = sport
         self.networkManager = networkManager
         self.path = path
+        self.didSelectSport()
+
     }
-    init(path :Int = 0 ){
-        self.sport = "football"
-        self.networkManager = NetworkManager()
-        self.path = path
-        self.detectSport()
-    }
-    func detectSport(){
+    func didSelectSport(){
         switch path {
         case 0 :
             sport = "football"

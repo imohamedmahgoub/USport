@@ -27,6 +27,7 @@
 		058059AF2C6E82CD0073FB26 /* TeamDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580599F2C6E82CD0073FB26 /* TeamDetailsViewModel.swift */; };
 		058059B42C6E84060073FB26 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 058059B32C6E84060073FB26 /* Alamofire */; };
 		058059B72C6E84740073FB26 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 058059B62C6E84740073FB26 /* Kingfisher */; };
+		05B3BC5C2C6EB8550099C811 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B3BC5B2C6EB8550099C811 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		058059952C6E82CD0073FB26 /* LeaguesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaguesViewModel.swift; sourceTree = "<group>"; };
 		0580599D2C6E82CD0073FB26 /* TeamsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
 		0580599F2C6E82CD0073FB26 /* TeamDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewModel.swift; sourceTree = "<group>"; };
+		05B3BC5B2C6EB8550099C811 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				0580599D2C6E82CD0073FB26 /* TeamsViewController.swift */,
+				05B3BC5B2C6EB8550099C811 /* CollectionViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -256,8 +259,8 @@
 		058059A22C6E82CD0073FB26 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				058059972C6E82CD0073FB26 /* Leagues */,
 				058059A12C6E82CD0073FB26 /* TeamDetails */,
+				058059972C6E82CD0073FB26 /* Leagues */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 			files = (
 				058059A62C6E82CD0073FB26 /* Teams.swift in Sources */,
 				058059A42C6E82CD0073FB26 /* NetworkManager.swift in Sources */,
+				05B3BC5C2C6EB8550099C811 /* CollectionViewCell.swift in Sources */,
 				0580595E2C6E815B0073FB26 /* Usport.xcdatamodeld in Sources */,
 				058059AE2C6E82CD0073FB26 /* TeamsViewController.swift in Sources */,
 				058059A92C6E82CD0073FB26 /* TableViewController.swift in Sources */,

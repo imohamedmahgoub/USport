@@ -10,6 +10,7 @@ import UIKit
 class TeamsViewController: UIViewController {
     
     
+    @IBOutlet weak var TeamDetailsCollectionView: UICollectionView!
     @IBOutlet weak var studiumImage: UIImageView!
     @IBOutlet weak var teamIconImage: UIImageView!
     @IBOutlet weak var teamNameLabel: UILabel!
