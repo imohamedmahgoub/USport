@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054D3B472C70A8110049E64F /* Internet Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D3B462C70A8110049E64F /* Internet Connectivity.swift */; };
 		058059542C6E815B0073FB26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058059532C6E815B0073FB26 /* AppDelegate.swift */; };
 		058059562C6E815B0073FB26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058059552C6E815B0073FB26 /* SceneDelegate.swift */; };
 		0580595B2C6E815B0073FB26 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0580595A2C6E815B0073FB26 /* Base */; };
@@ -28,7 +29,6 @@
 		05F135A72C6FDA58009D80A8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F135A62C6FDA58009D80A8 /* TableViewController.swift */; };
 		05F135AC2C6FDAD6009D80A8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 05F135AB2C6FDAD6009D80A8 /* Kingfisher */; };
 		05F135AE2C6FDADC009D80A8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 05F135AD2C6FDADC009D80A8 /* Alamofire */; };
-		05F135B02C6FE19C009D80A8 /* Network Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F135AF2C6FE19C009D80A8 /* Network Connection.swift */; };
 		153BA2882C6FCD4300B03119 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BA2872C6FCD4300B03119 /* HomeViewController.swift */; };
 		153BA28A2C6FCDC800B03119 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BA2892C6FCDC800B03119 /* HomeCollectionViewCell.swift */; };
 		153BA28C2C6FCE5100B03119 /* leaguesdetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BA28B2C6FCE5100B03119 /* leaguesdetails.swift */; };
@@ -54,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		054D3B462C70A8110049E64F /* Internet Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Internet Connectivity.swift"; sourceTree = "<group>"; };
 		058059502C6E815B0073FB26 /* Usport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Usport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058059532C6E815B0073FB26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		058059552C6E815B0073FB26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		05F135A22C6FD667009D80A8 /* Teams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		05F135A42C6FD674009D80A8 /* Leagues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leagues.swift; sourceTree = "<group>"; };
 		05F135A62C6FDA58009D80A8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		05F135AF2C6FE19C009D80A8 /* Network Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Connection.swift"; sourceTree = "<group>"; };
 		153BA2872C6FCD4300B03119 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		153BA2892C6FCDC800B03119 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		153BA28B2C6FCE5100B03119 /* leaguesdetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaguesdetails.swift; sourceTree = "<group>"; };
@@ -112,6 +112,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		054D3B452C70A7BE0049E64F /* Internet Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				054D3B462C70A8110049E64F /* Internet Connectivity.swift */,
+			);
+			path = "Internet Connectivity";
+			sourceTree = "<group>";
+		};
 		058059472C6E815B0073FB26 = {
 			isa = PBXGroup;
 			children = (
@@ -226,19 +234,19 @@
 			path = CoreDataManager;
 			sourceTree = "<group>";
 		};
-		05F1358D2C6FD471009D80A8 /* LeaguesNetworkManager */ = {
+		05F1358D2C6FD471009D80A8 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
 				05F1358C2C6FD471009D80A8 /* NetworkManager.swift */,
-				05F135AF2C6FE19C009D80A8 /* Network Connection.swift */,
 			);
-			path = LeaguesNetworkManager;
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 		05F1358E2C6FD471009D80A8 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				05F1358D2C6FD471009D80A8 /* LeaguesNetworkManager */,
+				054D3B452C70A7BE0049E64F /* Internet Connectivity */,
+				05F1358D2C6FD471009D80A8 /* NetworkManager */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -500,7 +508,6 @@
 				05F135A72C6FDA58009D80A8 /* TableViewController.swift in Sources */,
 				153BA2902C6FCEA100B03119 /* homeViewModel.swift in Sources */,
 				05F1357F2C6FD3B6009D80A8 /* LeaguesViewModel.swift in Sources */,
-				05F135B02C6FE19C009D80A8 /* Network Connection.swift in Sources */,
 				05F135A52C6FD674009D80A8 /* Leagues.swift in Sources */,
 				153BA28A2C6FCDC800B03119 /* HomeCollectionViewCell.swift in Sources */,
 				05F135672C6FD260009D80A8 /* CollectionViewCell.swift in Sources */,
@@ -511,6 +518,7 @@
 				058059562C6E815B0073FB26 /* SceneDelegate.swift in Sources */,
 				05F135682C6FD260009D80A8 /* TeamsViewController.swift in Sources */,
 				05F1357D2C6FD39A009D80A8 /* TableViewCell.swift in Sources */,
+				054D3B472C70A8110049E64F /* Internet Connectivity.swift in Sources */,
 				05F135692C6FD260009D80A8 /* TeamDetailsViewModel.swift in Sources */,
 				153BA2882C6FCD4300B03119 /* HomeViewController.swift in Sources */,
 			);

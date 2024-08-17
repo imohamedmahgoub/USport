@@ -126,23 +126,10 @@ class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "leagus", sender: indexPath.row)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "TVC") as? TableViewController
+        guard let vc = vc else { return  }
+        vc.index = indexPath.row
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-
-   //go to leages view contoller
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "leagus" {
-            if let vc = segue.destination as? ViewController {
-                if let index = sender as? Int {
-                    vc.index = index
-                }
-            }
-        }
-    }
-     */
-   /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.didSelectSport(at: indexPath.row)
-    }*/
 
 }

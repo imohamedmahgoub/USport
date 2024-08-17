@@ -44,11 +44,18 @@ class LeaguesViewModel: LeaguesViewModelProtocol {
         }
     }
     func getData() {
-        
-        networkManager.getLeaguesFromAPI(type:LeaguesResponse.self , sport: sport) {[weak self] leagues in
+        getData(type:LeaguesResponse.self, sport: sport, handler:{[weak self] leagues in
             guard let self else { return }
             self.leagues = leagues?.result ?? []
             self.bindDataToViewController()
+        })
+    }
+    
+    private func getData<generic : Codable>(type: generic.Type , sport : String ,handler : @escaping (generic?) -> Void) {
+        if InternetConnection.hasInternetConnect() {
+            networkManager.getDataFromAPI(metValue : .leagues, teamId: 0,firstTeamId:0,secondTeamId:0,type: type, sport: sport, handler: handler)
+        }else {
+            print("no internet")
         }
     }
 
