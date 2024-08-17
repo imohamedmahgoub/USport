@@ -6,14 +6,13 @@
 //
 
 import Foundation
-import Kingfisher
+protocol TeamDetailsViewModelProtocol: AnyObject {
+    var teams : [Teams] { get set }
 
-protocol TeamDetailsViewModelProtocol {
-    
 }
 
 class TeamDetailsViewModel: TeamDetailsViewModelProtocol {
+    var teams : [Teams] = []
     
-    
-    
+  
 }

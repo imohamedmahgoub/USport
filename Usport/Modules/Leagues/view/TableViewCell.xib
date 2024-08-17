@@ -4,41 +4,51 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="100" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="Usport" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="135" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="Usport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ygl-aI-dG5">
-                        <rect key="frame" x="10" y="0.0" width="101" height="101"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ygl-aI-dG5">
+                        <rect key="frame" x="10" y="33" width="70" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="Ygl-aI-dG5" secondAttribute="height" multiplier="1:1" id="Edc-Uj-Xem"/>
+                            <constraint firstAttribute="width" secondItem="Ygl-aI-dG5" secondAttribute="height" multiplier="1:1" id="a41-fR-gbg"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knr-5u-RU5">
-                        <rect key="frame" x="119" y="40" width="42" height="21"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jP9-16-ynJ">
+                        <rect key="frame" x="287" y="51" width="28" height="34.333333333333343"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="play.rectangle.fill" catalog="system"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knr-5u-RU5">
+                        <rect key="frame" x="90" y="58.000000000000007" width="192" height="20.333333333333336"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Knr-5u-RU5" secondAttribute="bottom" constant="40" id="2Ww-WQ-yF0"/>
-                    <constraint firstItem="Knr-5u-RU5" firstAttribute="centerY" secondItem="Ygl-aI-dG5" secondAttribute="centerY" id="DZK-dy-ajX"/>
-                    <constraint firstAttribute="bottom" secondItem="Ygl-aI-dG5" secondAttribute="bottom" id="Knw-OB-355"/>
-                    <constraint firstAttribute="trailing" secondItem="Ygl-aI-dG5" secondAttribute="trailing" constant="209" id="OeC-jj-J8P"/>
-                    <constraint firstItem="Knr-5u-RU5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="T9J-NZ-oo7"/>
-                    <constraint firstItem="Ygl-aI-dG5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="TDs-Sq-fhV"/>
-                    <constraint firstAttribute="trailing" secondItem="Knr-5u-RU5" secondAttribute="trailing" constant="159" id="hBc-4f-Z0p"/>
-                    <constraint firstItem="Knr-5u-RU5" firstAttribute="leading" secondItem="Ygl-aI-dG5" secondAttribute="trailing" constant="8" id="k8b-kN-NvC"/>
-                    <constraint firstItem="Ygl-aI-dG5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oWI-gU-kDC"/>
+                    <constraint firstItem="Knr-5u-RU5" firstAttribute="leading" secondItem="Ygl-aI-dG5" secondAttribute="trailing" constant="10" id="1UB-PW-ajp"/>
+                    <constraint firstItem="Knr-5u-RU5" firstAttribute="leading" secondItem="Ygl-aI-dG5" secondAttribute="trailing" constant="10" id="CAK-HW-B9i"/>
+                    <constraint firstItem="jP9-16-ynJ" firstAttribute="leading" secondItem="Knr-5u-RU5" secondAttribute="trailing" constant="5" id="CdK-AH-47h"/>
+                    <constraint firstItem="Ygl-aI-dG5" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.514706" id="Ehc-vk-aRO"/>
+                    <constraint firstAttribute="trailing" secondItem="jP9-16-ynJ" secondAttribute="trailing" constant="5" id="GEm-32-mqj"/>
+                    <constraint firstItem="Ygl-aI-dG5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="33" id="H1y-Te-fWa"/>
+                    <constraint firstItem="Ygl-aI-dG5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="OVC-6K-Zkp"/>
+                    <constraint firstItem="Ygl-aI-dG5" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.21875" id="T2W-oL-TX3"/>
+                    <constraint firstItem="Knr-5u-RU5" firstAttribute="centerY" secondItem="Ygl-aI-dG5" secondAttribute="centerY" id="U2r-sn-vCM"/>
+                    <constraint firstItem="jP9-16-ynJ" firstAttribute="leading" secondItem="Ygl-aI-dG5" secondAttribute="trailing" constant="207" id="Xxc-AG-JBQ"/>
+                    <constraint firstItem="jP9-16-ynJ" firstAttribute="centerY" secondItem="Knr-5u-RU5" secondAttribute="centerY" id="ebP-IZ-gmM"/>
+                    <constraint firstAttribute="bottom" secondItem="Ygl-aI-dG5" secondAttribute="bottom" constant="33" id="phS-HI-v10"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -46,7 +56,13 @@
                 <outlet property="leagueImage" destination="Ygl-aI-dG5" id="k3x-Vf-niW"/>
                 <outlet property="leagueName" destination="Knr-5u-RU5" id="lc7-cG-oWp"/>
             </connections>
-            <point key="canvasLocation" x="112.97709923664122" y="11.619718309859156"/>
+            <point key="canvasLocation" x="112.97709923664122" y="-0.70422535211267612"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

@@ -39,17 +39,21 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         let league = viewModel?.leagues[indexPath.row]
         let image = URL(string: (league?.leagueLogo) ?? "")
-        cell.leagueImage.kf.setImage(with: image, placeholder: UIImage(named: "noImage"))
+        cell.leagueImage.kf.setImage(with: image, placeholder: UIImage(named: "football"))
         cell.leagueImage.layer.cornerRadius = cell.leagueImage.frame.width / 2
         cell.leagueName.text = league?.leagueName
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 150
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "LVC") as? leaguesDetails
+        guard let vc = vc else { return }
+                
+        self.navigationController?.pushViewController(vc, animated: true)
 
     }
 }
