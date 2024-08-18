@@ -24,13 +24,14 @@ class LeaguesDetailsViewModel {
             if result?.success == 1 {
                 self.events = result!.result
                 
-                self.homeTeams = self.events.map { event in
+                let temp = self.events.map { event in
                     HomeTeamDetails(
                         homeTeamKey: event.homeTeamKey,
                         homeTeamName: event.eventHomeTeam ?? "",
                         homeTeamLogo: event.homeTeamLogo ?? " "
                     )
                 }
+                self.homeTeams = Array(Set(temp))
                 
                 DispatchQueue.main.async {
                     self.reloadCollectionView?()

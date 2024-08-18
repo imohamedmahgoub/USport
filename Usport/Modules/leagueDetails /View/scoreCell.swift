@@ -14,6 +14,8 @@ class scoreCell: UICollectionViewCell {
     @IBOutlet var awayTeamLogo: UIImageView!
     @IBOutlet var resultLbl: UILabel!
     
+    @IBOutlet var homeTeamName: UILabel!
+    @IBOutlet var awayTeamName: UILabel!
     private let backgroundImageView = UIImageView()
         
         override func awakeFromNib() {

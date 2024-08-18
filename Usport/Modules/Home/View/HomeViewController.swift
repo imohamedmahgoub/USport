@@ -15,7 +15,24 @@ class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectio
     var viewModel: HomeViewModel!
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+          let backgroundImageView = UIImageView()
+          backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+          backgroundImageView.image = UIImage(named: "background.jpg")
+          backgroundImageView.contentMode = .scaleAspectFill
+          
+          backgroundImageView.alpha = 0.25
+          
+          self.view.addSubview(backgroundImageView)
+          
+          NSLayoutConstraint.activate([
+              backgroundImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+              backgroundImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+              backgroundImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+              backgroundImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+          ])
+          
+          self.view.sendSubviewToBack(backgroundImageView)
+
         collectionVeiw.delegate = self
         collectionVeiw.dataSource = self
 

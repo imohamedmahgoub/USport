@@ -77,8 +77,26 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath)
            case 3:
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath) as! scoreCell
-               cell.homeTeamLogo.kf.setImage(with: URL(string: viewModel.events[indexPath.row].homeTeamLogo ?? "football"))
-               cell.awayTeamLogo.image = UIImage(named: "football.jpg")
+               
+               let event = viewModel.events[indexPath.row]
+               
+               if let homeTeamLogoURL = event.homeTeamLogo, !homeTeamLogoURL.isEmpty {
+                   cell.homeTeamLogo.kf.setImage(with: URL(string: homeTeamLogoURL))
+               } else {
+                   cell.homeTeamLogo.image = UIImage(named: "football") //
+               }
+               
+               if let awayTeamLogoURL = event.awayTeamLogo, !awayTeamLogoURL.isEmpty {
+                   cell.awayTeamLogo.kf.setImage(with: URL(string: awayTeamLogoURL))
+               } else {
+                   cell.awayTeamLogo.image = UIImage(named: "football") // 
+               }
+               
+               // Set event final result, home team name, and away team name
+               cell.resultLbl.text = event.eventFinalResult
+               cell.homeTeamName.text = event.eventHomeTeam
+               cell.awayTeamName.text = event.eventAwayTeam
+               
                return cell
            case 4:
                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell5", for: indexPath)
@@ -101,7 +119,7 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
        func scoresMatches() -> NSCollectionLayoutSection {
            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.8))
            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100))
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:.fractionalHeight(0.3))
            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
            return NSCollectionLayoutSection(group: group)
        }
