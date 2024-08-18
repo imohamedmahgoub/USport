@@ -7,7 +7,7 @@
 
 import UIKit
 
-class scoreCell: UICollectionViewCell {
+class ScoreCell: UICollectionViewCell {
   
     @IBOutlet var homeTeamLogo: UIImageView!
     

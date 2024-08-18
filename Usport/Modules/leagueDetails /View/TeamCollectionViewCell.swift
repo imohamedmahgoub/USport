@@ -7,7 +7,7 @@
 
 import UIKit
 
-class teamCollectionViewCell: UICollectionViewCell {
+class TeamCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var teamImg: UIImageView!
 }

@@ -87,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="-417.55725190839695" y="-491.54929577464793"/>
         </scene>
-        <!--Leagues Details-->
+        <!--Leagues Details View Controller-->
         <scene sceneID="PIw-nS-FJG">
             <objects>
-                <viewController storyboardIdentifier="LVC" id="m4c-95-lQz" customClass="leaguesDetails" customModule="Usport" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LVC" id="m4c-95-lQz" customClass="LeaguesDetailsViewController" customModule="Usport" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8wL-CD-3wi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,7 +156,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="188" height="62"/>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="cell4" id="8Yu-6g-xOa" customClass="scoreCell" customModule="Usport" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="cell4" id="8Yu-6g-xOa" customClass="ScoreCell" customModule="Usport" customModuleProvider="target">
                                         <rect key="frame" x="27.666666666666668" y="363" width="328" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ETT-ug-iR4">
@@ -242,7 +242,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="cell6" id="clW-cQ-hKf" customClass="teamCollectionViewCell" customModule="Usport" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="cell6" id="clW-cQ-hKf" customClass="TeamCollectionViewCell" customModule="Usport" customModuleProvider="target">
                                         <rect key="frame" x="138" y="544" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="O0i-1e-oeX">
