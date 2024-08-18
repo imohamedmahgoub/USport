@@ -10,7 +10,8 @@ import UIKit
 class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSource{
     
    
-
+    var key:Int?
+    var events = [Event]()
     @IBOutlet var collectiontview: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +32,18 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
                     }
                 }
         collectiontview.setCollectionViewLayout(layout, animated: true)
+        loaddata()
      }
     
+    func loaddata() {
+        let network = NetworkManager()
+        network.getDataFromAPI(metValue: .fixtures, teamId: 0, fromDate: "2023-08-17", toDate: "2024-08-17", leagueId: "\(key ?? 0)", type: EventsResponse.self, sport: "football") { result in
+            if result?.success == 1 {
+                self.events = result!.result
+                print(self.events.count)
+            }
+        }
+    }
     
     func scoresMatches()->NSCollectionLayoutSection{
         
