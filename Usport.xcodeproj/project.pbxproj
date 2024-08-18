@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		054D3B472C70A8110049E64F /* Internet Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D3B462C70A8110049E64F /* Internet Connectivity.swift */; };
+		054D3B4E2C71DB520049E64F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D3B4D2C71DB520049E64F /* Events.swift */; };
 		058059542C6E815B0073FB26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058059532C6E815B0073FB26 /* AppDelegate.swift */; };
 		058059562C6E815B0073FB26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058059552C6E815B0073FB26 /* SceneDelegate.swift */; };
 		0580595B2C6E815B0073FB26 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0580595A2C6E815B0073FB26 /* Base */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		054D3B462C70A8110049E64F /* Internet Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Internet Connectivity.swift"; sourceTree = "<group>"; };
+		054D3B4D2C71DB520049E64F /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		058059502C6E815B0073FB26 /* Usport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Usport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058059532C6E815B0073FB26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		058059552C6E815B0073FB26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 				054D3B462C70A8110049E64F /* Internet Connectivity.swift */,
 			);
 			path = "Internet Connectivity";
+			sourceTree = "<group>";
+		};
+		054D3B4C2C71DB3A0049E64F /* EventsResponse */ = {
+			isa = PBXGroup;
+			children = (
+				054D3B4D2C71DB520049E64F /* Events.swift */,
+			);
+			path = EventsResponse;
 			sourceTree = "<group>";
 		};
 		058059472C6E815B0073FB26 = {
@@ -263,6 +273,7 @@
 		05F1359F2C6FD613009D80A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				054D3B4C2C71DB3A0049E64F /* EventsResponse */,
 				05F135A12C6FD639009D80A8 /* TeamsResponse */,
 				05F135A02C6FD61A009D80A8 /* LeaguesResponse */,
 			);
@@ -503,6 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054D3B4E2C71DB520049E64F /* Events.swift in Sources */,
 				05F135A32C6FD667009D80A8 /* Teams.swift in Sources */,
 				05F135942C6FD471009D80A8 /* NetworkManager.swift in Sources */,
 				05F135A72C6FDA58009D80A8 /* TableViewController.swift in Sources */,
