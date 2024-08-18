@@ -23,7 +23,6 @@
 		05F1357B2C6FD395009D80A8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05F1357A2C6FD395009D80A8 /* TableViewCell.xib */; };
 		05F1357D2C6FD39A009D80A8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1357C2C6FD39A009D80A8 /* TableViewCell.swift */; };
 		05F1357F2C6FD3B6009D80A8 /* LeaguesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1357E2C6FD3B6009D80A8 /* LeaguesViewModel.swift */; };
-		05F135932C6FD471009D80A8 /* Usport.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05F1358A2C6FD471009D80A8 /* Usport.xcdatamodeld */; };
 		05F135942C6FD471009D80A8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1358C2C6FD471009D80A8 /* NetworkManager.swift */; };
 		05F135A32C6FD667009D80A8 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F135A22C6FD667009D80A8 /* Teams.swift */; };
 		05F135A52C6FD674009D80A8 /* Leagues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F135A42C6FD674009D80A8 /* Leagues.swift */; };
@@ -76,7 +75,6 @@
 		05F1357C2C6FD39A009D80A8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		05F1357E2C6FD3B6009D80A8 /* LeaguesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaguesViewModel.swift; sourceTree = "<group>"; };
 		05F1358C2C6FD471009D80A8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		05F135912C6FD471009D80A8 /* Usport.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Usport.xcdatamodel; sourceTree = "<group>"; };
 		05F135A22C6FD667009D80A8 /* Teams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		05F135A42C6FD674009D80A8 /* Leagues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leagues.swift; sourceTree = "<group>"; };
 		05F135A62C6FDA58009D80A8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -236,14 +234,6 @@
 			path = LeaguesViewModel;
 			sourceTree = "<group>";
 		};
-		05F1358B2C6FD471009D80A8 /* CoreDataManager */ = {
-			isa = PBXGroup;
-			children = (
-				05F1358A2C6FD471009D80A8 /* Usport.xcdatamodeld */,
-			);
-			path = CoreDataManager;
-			sourceTree = "<group>";
-		};
 		05F1358D2C6FD471009D80A8 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,7 +254,7 @@
 		05F1358F2C6FD471009D80A8 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				05F1358B2C6FD471009D80A8 /* CoreDataManager */,
+				150FB8F12C71F1A500F13F73 /* CoreDataManager */,
 				05F1358E2C6FD471009D80A8 /* NetworkManager */,
 			);
 			path = Service;
@@ -303,12 +293,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		150FB8F12C71F1A500F13F73 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
 		153BA2782C6FC6FF00B03119 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				153BA27A2C6FC71200B03119 /* Home */,
 				05F135752C6FD301009D80A8 /* Leagues */,
 				05F135662C6FD260009D80A8 /* TeamDetails */,
-				153BA27A2C6FC71200B03119 /* Home */,
 				153BA2792C6FC70900B03119 /* leagueDetails  */,
 			);
 			path = Modules;
@@ -524,7 +521,6 @@
 				153BA28A2C6FCDC800B03119 /* HomeCollectionViewCell.swift in Sources */,
 				05F135672C6FD260009D80A8 /* CollectionViewCell.swift in Sources */,
 				058059542C6E815B0073FB26 /* AppDelegate.swift in Sources */,
-				05F135932C6FD471009D80A8 /* Usport.xcdatamodeld in Sources */,
 				153BA28E2C6FCE7A00B03119 /* viewmodel.swift in Sources */,
 				153BA28C2C6FCE5100B03119 /* leaguesdetails.swift in Sources */,
 				058059562C6E815B0073FB26 /* SceneDelegate.swift in Sources */,
@@ -905,20 +901,6 @@
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		05F1358A2C6FD471009D80A8 /* Usport.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				05F135912C6FD471009D80A8 /* Usport.xcdatamodel */,
-			);
-			currentVersion = 05F135912C6FD471009D80A8 /* Usport.xcdatamodel */;
-			name = Usport.xcdatamodeld;
-			path = /Users/mohamedmahgoub/Desktop/Usport/Usport/Usport/Service/CoreDataManager/Usport.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 058059482C6E815B0073FB26 /* Project object */;
 }
