@@ -47,7 +47,11 @@ class param {
         case .teamsDetails :
             return ["met" : metValue.rawValue,"teamId" : "\(teamId)","APIkey" : apiKey]
         case .fixtures :
-            return ["met" : metValue.rawValue,"leagueId" :"\(leagueId)", "APIkey" : apiKey]
+            if from == "" {
+                return ["met" : metValue.rawValue,"leagueId" :"\(leagueId)", "APIkey" : apiKey]
+            }else{
+                return ["met" : metValue.rawValue,"leagueId" :"\(leagueId)","from":"\(from)","to":"\(to)",  "APIkey" : apiKey]
+            }
         default :
             return ["met" : metValue.rawValue,"APIkey" : apiKey]
             
