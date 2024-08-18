@@ -16,18 +16,12 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.RegisterNib(cell: TableViewCell.self)
-        let networkIndicator = UIActivityIndicatorView(style: .medium)
-        networkIndicator.center = view.center
-        networkIndicator.startAnimating()
-        view.addSubview(networkIndicator)
         viewModel = LeaguesViewModel(path: index ?? 0)
-        
         viewModel?.getData()
         viewModel?.bindDataToViewController = { [weak self] in
             guard let self else { return  }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                networkIndicator.stopAnimating()
             }
         }
     }

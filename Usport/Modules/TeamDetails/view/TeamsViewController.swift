@@ -9,7 +9,7 @@ import UIKit
 
 class TeamsViewController: UIViewController {
     var teamsDetailsViewModel : TeamDetailsViewModelProtocol?
-
+    var index:Int?
     
     @IBOutlet weak var TeamDetailsCollectionView: UICollectionView!
     @IBOutlet weak var studiumImage: UIImageView!
@@ -20,11 +20,21 @@ class TeamsViewController: UIViewController {
         super.viewDidLoad()
         TeamDetailsCollectionView.dataSource = self
         TeamDetailsCollectionView.delegate = self
-        teamsDetailsViewModel = TeamDetailsViewModel()
-       let teamImage = URL(string: (teamsDetailsViewModel?.teams.first?.teamLogo) ?? "")
-        teamIconImage.kf.setImage(with: teamImage , placeholder: UIImage(systemName: "camera"))
-        studiumImage.image = UIImage(named: "cricket")
-        teamNameLabel.text = "Mohamed Mahgoub Team"
+        teamsDetailsViewModel = TeamDetailsViewModel(path: index ?? 0)
+        
+        teamsDetailsViewModel?.getData({ team in
+            
+            DispatchQueue.main.async {
+                let teamImage = URL(string: (self.teamsDetailsViewModel?.team!.first!.teamLogo) ?? "")
+                self.teamIconImage.kf.setImage(with:teamImage , placeholder: UIImage(systemName: "camera"))
+                self.teamIconImage.layer.cornerRadius = self.teamIconImage.frame.width / 2
+
+                self.studiumImage.image = UIImage(named: "AppIcon")
+                
+                self.teamNameLabel.text = self.teamsDetailsViewModel?.team?.first?.teamName
+                self.TeamDetailsCollectionView.reloadData()
+            }
+        })
     }
    
 }
@@ -35,11 +45,11 @@ extension TeamsViewController : UICollectionViewDelegate,UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        let team = teamsDetailsViewModel?.teams[indexPath.row]
+        //let team = teamsDetailsViewModel?.team?.first.
         switch indexPath.row {
         case 0:
-            cell.firstLabel.text = "Leagues1:"
-            cell.secondLabel.text = "Mohamed1"
+            cell.firstLabel.text = "Coach :"
+            cell.secondLabel.text = teamsDetailsViewModel?.team?.first?.coaches?.first?.coachName
         case 1:
             cell.firstLabel.text = "Leagues2:"
             cell.secondLabel.text = "Mohamed2"
@@ -62,7 +72,7 @@ extension TeamsViewController : UICollectionViewDelegate,UICollectionViewDataSou
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 375, height: 135)
+        return CGSize(width: view.frame.width, height: 135)
     }
     
 }
