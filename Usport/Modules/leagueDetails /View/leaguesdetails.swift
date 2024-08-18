@@ -42,7 +42,7 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
         print(events)
         test()
      }
-    
+
     func loaddata() {
         let network = NetworkManager()
         network.getDataFromAPI(metValue: .fixtures, teamId: 0, fromDate: "2023-08-17", toDate: "2024-08-17", leagueId: "\(key ?? 0)", type: EventsResponse.self, sport: "football") { result in
@@ -183,7 +183,6 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
             cell.homeTeamLogo.kf.setImage(with: URL(string: events[indexPath.row].homeTeamLogo ?? "football"))
               cell.awayTeamLogo.image = UIImage(named: "football.jpg")
 
-             cell.backgroundColor = .systemGray
              return cell
         case 4:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell5", for: indexPath)
