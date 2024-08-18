@@ -7,7 +7,7 @@
 
 import Foundation
 protocol TeamDetailsViewModelProtocol: AnyObject {
-    var teams : TeamsResponse? { get }
+    var teamsDetails : [HomeTeamDetails]{get set}
     var team:[Teams]? { get }
     func getData(_ handler2:@escaping([Teams])->Void)
 }
@@ -15,8 +15,8 @@ protocol TeamDetailsViewModelProtocol: AnyObject {
 class TeamDetailsViewModel: TeamDetailsViewModelProtocol {
     var path: Int
     var sport : String
-    var teams : TeamsResponse?
     var team:[Teams]?
+    var teamsDetails: [HomeTeamDetails] = []
     var networkManager : NetworkManagerProtocol
     init(sport: String = "football",networkManager: NetworkManagerProtocol = NetworkManager() ,path :Int = 0 ){
         self.sport = sport

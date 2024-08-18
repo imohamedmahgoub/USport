@@ -6,130 +6,67 @@
 //
 
 import UIKit
-import Network
 
 class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
-    var noInternetImageView: UIImageView!
-    var monitor: NWPathMonitor?
-    let refreshControl = UIRefreshControl()
+ 
 
     @IBOutlet weak var collectionVeiw: UICollectionView!
     
-      override func viewDidLoad() {
-          super.viewDidLoad()
-          collectionVeiw.delegate = self
-          collectionVeiw.dataSource = self
+    var viewModel: HomeViewModel!
+
+    override func viewDidLoad() {
+          let backgroundImageView = UIImageView()
+          backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+          backgroundImageView.image = UIImage(named: "background.jpg")
+          backgroundImageView.contentMode = .scaleAspectFill
           
-          setupNoInternetImageView()
-          setupNetworkMonitor()
-          setupRefreshControl()
-      }
+          backgroundImageView.alpha = 0.25
+          
+          self.view.addSubview(backgroundImageView)
+          
+          NSLayoutConstraint.activate([
+              backgroundImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+              backgroundImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+              backgroundImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+              backgroundImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+          ])
+          
+          self.view.sendSubviewToBack(backgroundImageView)
 
-      func setupRefreshControl() {
-          refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-          collectionVeiw.refreshControl = refreshControl
-      }
+        collectionVeiw.delegate = self
+        collectionVeiw.dataSource = self
 
-      @objc func refreshData() {
-          monitorNetworkConnection()
-      }
+        viewModel = HomeViewModel()
+        viewModel.startNetworkMonitor()
+    }
 
-      func monitorNetworkConnection() {
-          monitor?.pathUpdateHandler = { [weak self] path in
-              DispatchQueue.main.async {
-                  if path.status == .satisfied {
-                      // Network is available, hide the noInternetImageView and show the collectionView
-                      self?.noInternetImageView.isHidden = true
-                      self?.collectionVeiw.isHidden = false
-                      self?.fetchData()
-                  } else {
-                      // Network is unavailable, show the noInternetImageView and hide the collectionView
-                      self?.noInternetImageView.isHidden = false
-                      self?.collectionVeiw.isHidden = true
-                      self?.refreshControl.endRefreshing()  // End the refresh control even if there's no internet
-                      self?.showNoNetworkAlert()
-                  }
-              }
-          }
-      }
-
-      func fetchData() {
-          // Simulate network request or perform actual data fetch
-          DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-              // Reload your collection view data here
-              self?.collectionVeiw.reloadData()
-              self?.refreshControl.endRefreshing()  // End the refresh animation
-          }
-      }
-
-      func setupNoInternetImageView() {
-          noInternetImageView = UIImageView(image: UIImage(named: "football.jpg")) // Replace with your no internet image
-          noInternetImageView.contentMode = .scaleAspectFit
-          noInternetImageView.frame = view.bounds
-          noInternetImageView.isHidden = true
-          view.addSubview(noInternetImageView)
-      }
-
-      func setupNetworkMonitor() {
-          monitor = NWPathMonitor()
-          let queue = DispatchQueue(label: "NetworkMonitor")
-          monitor?.start(queue: queue)
-          monitorNetworkConnection()  // Initial check on view load
-      }
-
-      func showNoNetworkAlert() {
-          let alert = UIAlertController(title: "No Internet", message: "Please check your internet connection.", preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .default))
-          present(alert, animated: true)
-      }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.numberOfItems()
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
-        switch(indexPath.row){
-        case 0:
-            cell.sportImg.image = UIImage(named: "football.jpg")
-            cell.sportLbl.text = "Football"
-        case 1 :
-            cell.sportImg.image = UIImage(named: "basketbell.jpg")
-            cell.sportLbl.text = "basketball"
-        case 2 :
-            cell.sportImg.image = UIImage(named: "cricket.jpg")
-            cell.sportLbl.text = "cricket"
-        case 3 :
-            cell.sportImg.image = UIImage(named: "tennis.jpg")
-            cell.sportLbl.text = "tennis"
-        default:
-            cell.sportImg.image = UIImage(named: "basketbell.jpg")
-            cell.sportLbl.text = "basketball"
-        }
+        cell.sportImg.image = UIImage(named: viewModel.sportImageName(at: indexPath.row))
+        cell.sportLbl.text = viewModel.sportName(at: indexPath.row)
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return 4
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width*0.45, height: self.view.frame.width*0.7)
+        return CGSize(width: self.view.frame.width * 0.45, height: self.view.frame.width * 0.6)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+
+ 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
-    }
-    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "TVC") as? TableViewController
-        guard let vc = vc else { return  }
+        guard let vc = vc else { return }
         vc.index = indexPath.row
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
 }
