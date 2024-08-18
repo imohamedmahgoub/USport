@@ -44,12 +44,16 @@ class TableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = storyboard?.instantiateViewController(withIdentifier: "LVC") as? leaguesDetails
-        vc?.key = viewModel!.leagues[indexPath.row].leagueKey
-        guard let vc = vc else { return }
-                
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "LVC") as! leaguesDetails
+        let selectedLeague = viewModel?.leagues[indexPath.row]
+        
+        let leaguesDetailsViewModel = LeaguesDetailsViewModel()
+        leaguesDetailsViewModel.key = selectedLeague?.leagueKey
+        
+        vc.viewModel = leaguesDetailsViewModel
+        
         self.navigationController?.pushViewController(vc, animated: true)
-
     }
 }
 
