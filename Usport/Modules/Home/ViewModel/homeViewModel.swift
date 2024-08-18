@@ -46,7 +46,7 @@ class HomeViewModel {
     func sportImageName(at index: Int) -> String {
         switch index {
         case 0: return "football.jpg"
-        case 1: return "basketbell.jpg"
+        case 1: return "basketball.jpg"
         case 2: return "cricket.jpg"
         case 3: return "tennis.jpg"
         default: return "basketball.jpg"

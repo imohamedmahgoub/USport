@@ -39,12 +39,12 @@ class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectio
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width * 0.45, height: self.view.frame.width * 0.45)
+        return CGSize(width: self.view.frame.width * 0.45, height: self.view.frame.width * 0.6)
     }
 
  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10) // Add 10px margin from left and right
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "TVC") as? TableViewController

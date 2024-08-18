@@ -16,7 +16,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
        self.layoutIfNeeded()
         layer.cornerRadius = self.frame.height / 8
         layer.masksToBounds = true
-        sportImg.contentMode = .scaleAspectFill
 
 
       }
