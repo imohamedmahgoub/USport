@@ -11,7 +11,13 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
     
    
     var key:Int?
+    //for events
     var events = [Event]()
+    var homeTeamsSet = Set<HomeTeamDetails>()
+    
+      var homeTeamsArray: [HomeTeamDetails] {
+          return Array(homeTeamsSet)
+      }
     @IBOutlet var collectiontview: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +40,7 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
         collectiontview.setCollectionViewLayout(layout, animated: true)
         loaddata()
         print(events)
+        test()
      }
     
     func loaddata() {
@@ -41,9 +48,20 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
         network.getDataFromAPI(metValue: .fixtures, teamId: 0, fromDate: "2023-08-17", toDate: "2024-08-17", leagueId: "\(key ?? 0)", type: EventsResponse.self, sport: "football") { result in
             if result?.success == 1 {
                 self.events = result!.result
-                print(self.events)
+                
+                let homeTeamsArray = self.events.map { event in
+                           return HomeTeamDetails(
+                               homeTeamKey: event.homeTeamKey,
+                               homeTeamName: event.eventHomeTeam ?? "",
+                               homeTeamLogo: event.homeTeamLogo ?? " "
+                           )
+                       }
+                self.homeTeamsSet = Set(homeTeamsArray)
+                print(self.events.count)
+                print(self.homeTeamsArray.count)
                 DispatchQueue.main.async {
                               self.collectiontview.reloadData()
+                
                     }
 
             }
@@ -100,7 +118,7 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
             // Set the group size to take 100% of the section's width and have a fixed height of 50 points
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
             
             // Create the group and add the item to it
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
@@ -117,18 +135,10 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
             return section
         
     }
-    /*func scoresMatches()-> NSCollectionLayoutSection {
-        let section = NSCollectionLayoutSection(group: group)
-           return section
-    }
-    
-    func TeamsInTheleague()-> NSCollectionLayoutSection {
-        let section = NSCollectionLayoutSection(group: group)
-           return section
-    }*/
+ 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
             return 6
-    }
+       }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section{
 
@@ -137,9 +147,13 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
             
         case 1:
             return 10
+        // number of teams in the leagues
         case 5:
-            return 10
+            print("hi \(homeTeamsArray.count)")
+            return homeTeamsArray.count
+       //number of scores
         case 3 :
+            print("hi evenrt \(events.count)")
             return events.count
         
         default:
@@ -147,7 +161,12 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
         }
     }
     
-    
+    func test()-> Void {
+        print("start")
+        for team in homeTeamsArray {
+            print("Team Name: \(team.homeTeamName), Logo: \(String(describing: team.homeTeamLogo))")
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: UICollectionViewCell?
         
@@ -166,12 +185,20 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
 
              cell.backgroundColor = .systemGray
              return cell
-            
         case 4:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell5", for: indexPath)
+            
         case 5:
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell6", for: indexPath)
-            cell?.backgroundColor = .systemGray
+            print("case 4 ")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell6", for: indexPath) as! teamCollectionViewCell
+            if !(indexPath.row > homeTeamsArray.count){
+                cell.teamImg.kf.setImage(with :URL(string: homeTeamsArray[indexPath.row].homeTeamLogo))
+                
+                cell.backgroundColor = .systemGray
+                
+                
+                return cell
+            }
         default:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath)
         }
