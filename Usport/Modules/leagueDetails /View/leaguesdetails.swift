@@ -33,6 +33,7 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
                 }
         collectiontview.setCollectionViewLayout(layout, animated: true)
         loaddata()
+        print(events)
      }
     
     func loaddata() {
@@ -40,7 +41,11 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
         network.getDataFromAPI(metValue: .fixtures, teamId: 0, fromDate: "2023-08-17", toDate: "2024-08-17", leagueId: "\(key ?? 0)", type: EventsResponse.self, sport: "football") { result in
             if result?.success == 1 {
                 self.events = result!.result
-                print(self.events.count)
+                print(self.events)
+                DispatchQueue.main.async {
+                              self.collectiontview.reloadData()
+                    }
+
             }
         }
     }
@@ -132,8 +137,10 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
             
         case 1:
             return 10
-        case 3 ,5:
+        case 5:
             return 10
+        case 3 :
+            return events.count
         
         default:
             return 1
@@ -153,8 +160,12 @@ class leaguesDetails: UIViewController ,UICollectionViewDelegate,UICollectionVie
         case 2:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath)
         case 3 :
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath)
-            cell?.backgroundColor = .systemGray
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath) as! scoreCell
+            cell.homeTeamLogo.kf.setImage(with: URL(string: events[indexPath.row].homeTeamLogo ?? "football"))
+              cell.awayTeamLogo.image = UIImage(named: "football.jpg")
+
+             cell.backgroundColor = .systemGray
+             return cell
             
         case 4:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell5", for: indexPath)
