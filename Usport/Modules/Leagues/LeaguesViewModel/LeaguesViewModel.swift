@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol LeaguesViewModelProtocol : AnyObject{
+protocol LeaguesViewModelProtocol {
     var leagues : [Leagues] { get set }
     var bindDataToViewController: (()->()) { get set  }
     func getData()
@@ -53,7 +53,7 @@ class LeaguesViewModel: LeaguesViewModelProtocol {
     
     private func getData<generic : Codable>(type: generic.Type , sport : String ,handler : @escaping (generic?) -> Void) {
         if InternetConnection.hasInternetConnect() {
-            networkManager.getDataFromAPI(metValue : .leagues, teamId: 0,firstTeamId:0,secondTeamId:0,type: type, sport: sport, handler: handler)
+            networkManager.getDataFromAPI(metValue: .leagues, teamId: 96, fromDate: "", toDate: "", leagueId: "", type: type, sport: sport, handler: handler)
         }else {
             print("no internet")
         }

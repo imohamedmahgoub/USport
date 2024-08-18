@@ -4,7 +4,7 @@
 //
 //  Created by Mohamed Mahgoub on 15/08/2024.
 //
-
+//teamid //Team response
 import Foundation
 
 struct TeamsResponse : Codable {
@@ -57,14 +57,10 @@ class Players : Codable {
 }
 class Coaches : Codable {
     let coachName : String?
-    let coachCountry : String?
-    let coachAge : String?
 
     enum CodingKeys: String, CodingKey {
 
         case coachName = "coach_name"
-        case coachCountry = "coach_country"
-        case coachAge = "coach_age"
     }
 }
 
