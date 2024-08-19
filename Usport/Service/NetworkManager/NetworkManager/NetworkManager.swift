@@ -14,6 +14,7 @@ protocol NetworkManagerProtocol {
 
 let apiKey = "2c28d4947373c9aad33c4b48c0f99c79ce4469f4c59f207b0ee9d8f73d2ae9e2"
 
+
 class NetworkManager : NetworkManagerProtocol {
     let params = param()
     

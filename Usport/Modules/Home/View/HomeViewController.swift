@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+class HomeViewController: UIViewController {
  
 
     @IBOutlet weak var collectionVeiw: UICollectionView!
@@ -15,31 +15,39 @@ class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectio
     var viewModel: HomeViewModel!
 
     override func viewDidLoad() {
-          let backgroundImageView = UIImageView()
-          backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-          backgroundImageView.image = UIImage(named: "background.jpg")
-          backgroundImageView.contentMode = .scaleAspectFill
-          
-          backgroundImageView.alpha = 0.25
-          
-          self.view.addSubview(backgroundImageView)
-          
-          NSLayoutConstraint.activate([
-              backgroundImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-              backgroundImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-              backgroundImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
-              backgroundImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-          ])
-          
-          self.view.sendSubviewToBack(backgroundImageView)
-
         collectionVeiw.delegate = self
         collectionVeiw.dataSource = self
-
         viewModel = HomeViewModel()
         viewModel.startNetworkMonitor()
+        homeSetup()
     }
 
+    
+    func homeSetup() {
+        self.tabBarController?.navigationItem.title = "Sports"
+        let backgroundImageView = UIImageView()
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.image = UIImage(named: "background.jpg")
+        backgroundImageView.contentMode = .scaleAspectFill
+        
+        backgroundImageView.alpha = 0.25
+      
+        self.view.addSubview(backgroundImageView)
+        
+        NSLayoutConstraint.activate([
+            backgroundImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            backgroundImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        
+        self.view.sendSubviewToBack(backgroundImageView)
+    }
+}
+
+
+extension HomeViewController :  UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -67,6 +75,7 @@ class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectio
         let vc = storyboard?.instantiateViewController(withIdentifier: "TVC") as? TableViewController
         guard let vc = vc else { return }
         vc.index = indexPath.row
+        vc.isFav = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

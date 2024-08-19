@@ -15,7 +15,7 @@ class LeaguesDetailsViewController: UIViewController {
     @IBOutlet var collectiontview: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         collectiontview.dataSource = self
         collectiontview.delegate = self
         
@@ -27,7 +27,20 @@ class LeaguesDetailsViewController: UIViewController {
         viewModel.loadData()
     }
     
- 
+    @IBAction func backAction(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func addToFavoriteAction(_ sender: Any) {
+        viewModel.toggleFavoriteStatus()
+          
+          let isFavorite = viewModel.isFavorite()
+          let message = isFavorite ? "Added to Favorites" : "Removed from Favorites"
+          
+          let alert = UIAlertController(title: message, message: "League has been \(isFavorite ? "added to" : "removed from") your favorites.", preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+          present(alert, animated: true, completion: nil)
+    }
 }
 
 extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionViewDataSource {
@@ -166,4 +179,7 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+}
+extension LeaguesDetailsViewController {
+    
 }

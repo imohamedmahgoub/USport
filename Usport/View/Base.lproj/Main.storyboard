@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cFd-LL-vjq">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="tableCellPlainBackgroundColor"/>
                                 <color key="tintColor" red="0.1869964542" green="0.84189008099999996" blue="0.94509804249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ap5-vg-U4R">
@@ -78,6 +78,7 @@
                             <constraint firstItem="cFd-LL-vjq" firstAttribute="top" secondItem="tIe-eN-6T7" secondAttribute="top" id="zEG-hA-Dtt"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="figure.australian.football" catalog="system" id="7yw-CM-caf"/>
                     <navigationItem key="navigationItem" title="Sports" id="U90-c6-7kT"/>
                     <connections>
                         <outlet property="collectionVeiw" destination="cFd-LL-vjq" id="mEV-e1-Cco"/>
@@ -85,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nz8-N5-JHh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-417.55725190839695" y="-491.54929577464793"/>
+            <point key="canvasLocation" x="431" y="-700"/>
         </scene>
         <!--Leagues Details View Controller-->
         <scene sceneID="PIw-nS-FJG">
@@ -96,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IJc-cP-8mh">
-                                <rect key="frame" x="5" y="64" width="383" height="749"/>
+                                <rect key="frame" x="5" y="103" width="383" height="661"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xv6-gx-jkl">
                                     <size key="itemSize" width="128" height="128"/>
@@ -261,23 +262,47 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBo-2l-Rw1">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bpn-DR-dcp"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" image="arrowshape.backward" catalog="system" id="bZr-Jx-gpA">
+                                        <connections>
+                                            <action selector="backAction:" destination="m4c-95-lQz" id="LJM-Nd-Lro"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="SW8-LH-IPQ"/>
+                                    <barButtonItem title="Item" image="heart" catalog="system" id="1bA-WM-5at">
+                                        <connections>
+                                            <action selector="addToFavoriteAction:" destination="m4c-95-lQz" id="3gG-bj-ITV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="z0l-KV-03A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="z0l-KV-03A" firstAttribute="trailing" secondItem="IJc-cP-8mh" secondAttribute="trailing" constant="5" id="4Sg-6A-Vjd"/>
+                            <constraint firstItem="IJc-cP-8mh" firstAttribute="top" secondItem="NBo-2l-Rw1" secondAttribute="bottom" id="4ni-PO-JcJ"/>
                             <constraint firstItem="z0l-KV-03A" firstAttribute="bottom" secondItem="IJc-cP-8mh" secondAttribute="bottom" constant="5" id="6RS-VA-we1"/>
-                            <constraint firstItem="IJc-cP-8mh" firstAttribute="top" secondItem="z0l-KV-03A" secondAttribute="top" constant="5" id="JZU-tg-xZY"/>
+                            <constraint firstAttribute="trailing" secondItem="NBo-2l-Rw1" secondAttribute="trailing" id="6XZ-jH-lBR"/>
                             <constraint firstItem="IJc-cP-8mh" firstAttribute="leading" secondItem="z0l-KV-03A" secondAttribute="leading" constant="5" id="NTp-4b-vF2"/>
+                            <constraint firstItem="NBo-2l-Rw1" firstAttribute="leading" secondItem="8wL-CD-3wi" secondAttribute="leading" id="vgn-6i-LEB"/>
+                            <constraint firstItem="NBo-2l-Rw1" firstAttribute="top" secondItem="z0l-KV-03A" secondAttribute="top" id="z8f-Gw-GAF"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectiontview" destination="IJc-cP-8mh" id="cJE-iB-3Eh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="od3-Fn-XVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1107.6335877862596" y="-492.25352112676057"/>
+            <point key="canvasLocation" x="2086.2595419847326" y="-492.25352112676057"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="dqY-2D-sXq">
@@ -292,10 +317,14 @@
                             <outlet property="delegate" destination="6kv-35-Ez7" id="Oek-oc-Zy2"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="" image="star.fill" catalog="system" id="5Gk-c2-sky"/>
+                    <connections>
+                        <outlet property="tableView" destination="qUQ-9x-DOl" id="7Qn-Nd-btq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfh-xx-2it" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="310.68702290076334" y="-492.25352112676057"/>
+            <point key="canvasLocation" x="389" y="-20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wn3-x2-4IR">
@@ -308,7 +337,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="CS2-Bb-GHB" kind="relationship" relationship="rootViewController" id="4bX-lA-f0b"/>
+                        <segue destination="cLg-Xe-RmW" kind="relationship" relationship="rootViewController" id="4bX-lA-f0b"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SwB-WA-GRE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -491,12 +520,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8G-c7-YNB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1860.3053435114502" y="-492.25352112676057"/>
+            <point key="canvasLocation" x="2787.0229007633588" y="-492.25352112676057"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="lf1-fL-SOB">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cLg-Xe-RmW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Jof-zE-2Th"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JQl-6h-SFV">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="CS2-Bb-GHB" kind="relationship" relationship="viewControllers" id="n7e-Yw-fx7"/>
+                        <segue destination="6kv-35-Ez7" kind="relationship" relationship="viewControllers" id="onG-xv-kNC"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vDJ-dF-Jbu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-417.55725190839695" y="-491.54929577464793"/>
         </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.backward" catalog="system" width="128" height="104"/>
         <image name="cricket" width="2048" height="2048"/>
+        <image name="figure.australian.football" catalog="system" width="128" height="124"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="kingfisher-10.jpg" width="250" height="250"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

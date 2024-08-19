@@ -4,7 +4,6 @@
 //
 //  Created by Ahmed El Gndy on 19/08/2024.
 //
-
 import Foundation
 import CoreData
 import UIKit
@@ -12,8 +11,8 @@ import UIKit
 protocol CoreDataManagerProtocol {
     func isFav(leagueKey: Int?) -> Bool
     func favToggle(league: Leagues)
+    func fetchFavouriteLeagues() -> [FavouriteLeague] // Added this method
 }
-
 class CoreDataManager: CoreDataManagerProtocol {
     let context: NSManagedObjectContext
     
@@ -34,29 +33,29 @@ class CoreDataManager: CoreDataManagerProtocol {
         do {
             try context.save()
         } catch {
-            print(error.localizedDescription)
+            print("Failed to save favorite league: \(error.localizedDescription)")
         }
     }
     
-    func fetchFavouriteLeagues() -> [FavouriteLeagueEntity] {
-        let fetchRequest = NSFetchRequest<FavouriteLeagueEntity>(entityName: "FavouriteLeague")
+    func fetchFavouriteLeagues() -> [FavouriteLeague] {
+        let fetchRequest = NSFetchRequest<FavouriteLeague>(entityName: "FavouriteLeague")
         do {
             return try context.fetch(fetchRequest)
         } catch {
-            print(error.localizedDescription)
+            print("Failed to fetch favourite leagues: \(error.localizedDescription)")
+            return []
         }
-        return []
     }
     
     func removeFavouriteLeague(leagueKey: Int) {
         guard let index = fetchFavouriteLeagues().firstIndex(where: { $0.leagueKey == leagueKey }) else { return }
         
-        self.context.delete(self.fetchFavouriteLeagues()[index])
+        context.delete(fetchFavouriteLeagues()[index])
         
         do {
             try context.save()
         } catch {
-            print(error.localizedDescription)
+            print("Failed to remove favorite league: \(error.localizedDescription)")
         }
     }
     
