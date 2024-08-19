@@ -13,6 +13,7 @@ class TeamTableViewCell: UITableViewCell {
     @IBOutlet weak var playerImage: UIImageView!
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var playerNumber: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCellUi()
