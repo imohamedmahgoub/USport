@@ -19,7 +19,7 @@ struct TeamsResponse : Codable {
 }
 
 class Teams : Codable {
-    let teamKey : Int?
+    let teamKey : Int
     let teamName : String?
     let teamLogo : String?
     let players : [Players]?

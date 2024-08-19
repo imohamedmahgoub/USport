@@ -42,8 +42,7 @@ class NetworkManager : NetworkManagerProtocol {
 }
 
 class param {
-    func getParam(metValue : APIValidation,teamId : Int = 96,from : String,to : String, leagueId : String) -> [String: String] {
-        
+    func getParam(metValue : APIValidation,teamId : Int,from : String,to : String, leagueId : String) -> [String: String] {
         switch metValue {
         case .teamsDetails :
             return ["met" : metValue.rawValue,"teamId" : "\(teamId)","APIkey" : apiKey]
@@ -55,12 +54,10 @@ class param {
             }
         default :
             return ["met" : metValue.rawValue,"APIkey" : apiKey]
-            
         }
     }
 }
 enum APIValidation : String {
-    
     case leagues = "Leagues"
     case teamsDetails = "Teams"
     case fixtures = "Fixtures"

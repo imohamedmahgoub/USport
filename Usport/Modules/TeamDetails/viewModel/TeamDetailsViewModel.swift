@@ -7,23 +7,24 @@
 
 import Foundation
 protocol TeamDetailsViewModelProtocol: AnyObject {
-    var teamsDetails : [HomeTeamDetails]{get set}
-    var team:[Teams]? { get }
-    func getData(_ handler2:@escaping([Teams])->Void)
+    var teamId : Int? { get set }
+    var team:[Teams] { get }
+    func getData()
+    var bindDataToTVC : (()->()) { get set }
 }
 
 class TeamDetailsViewModel: TeamDetailsViewModelProtocol {
+    var bindDataToTVC: (() -> ()) = {}
     var path: Int
     var sport : String
-    var team:[Teams]?
-    var teamsDetails: [HomeTeamDetails] = []
+    var team:[Teams] = []
+    var teamId : Int?
     var networkManager : NetworkManagerProtocol
     init(sport: String = "football",networkManager: NetworkManagerProtocol = NetworkManager() ,path :Int = 0 ){
         self.sport = sport
         self.networkManager = networkManager
         self.path = path
         self.didSelectSport()
-
     }
     func didSelectSport(){
         switch path {
@@ -39,17 +40,17 @@ class TeamDetailsViewModel: TeamDetailsViewModelProtocol {
             sport = "football"
         }
     }
-    func getData(_ handler2:@escaping([Teams])->Void) {
+    func getData() {
         getData(type:TeamsResponse.self, sport: sport, handler:{[weak self] teams in
             guard let self else { return }
             self.team = teams!.result
-            handler2(team!)
+            self.bindDataToTVC()
         })
     }
     
     private func getData<generic : Codable>(type: generic.Type , sport : String ,handler : @escaping (generic?) -> Void) {
         if InternetConnection.hasInternetConnect() {
-            networkManager.getDataFromAPI(metValue: .teamsDetails, teamId: 96, fromDate: "", toDate: "", leagueId: "", type: type, sport: sport, handler: handler)
+            networkManager.getDataFromAPI(metValue: .teamsDetails, teamId: teamId ?? 100, fromDate: "", toDate: "", leagueId: "", type: type, sport: sport, handler: handler)
         }else {
             print("no internet")
         }
