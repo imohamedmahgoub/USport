@@ -364,7 +364,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jo-lH-mwc">
                                 <rect key="frame" x="143" y="347" width="229" height="25"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -373,6 +373,12 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7Z-85-W2w">
+                                <rect key="frame" x="143" y="368" width="245" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lKc-0M-E0e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -380,6 +386,7 @@
                             <constraint firstItem="7Mt-Yu-wlY" firstAttribute="leading" secondItem="lKc-0M-E0e" secondAttribute="leading" id="2vf-4d-C0W"/>
                             <constraint firstAttribute="bottomMargin" secondItem="0Jo-lH-mwc" secondAttribute="bottom" constant="446" id="3eM-L3-n7d"/>
                             <constraint firstItem="7Mt-Yu-wlY" firstAttribute="top" secondItem="lKc-0M-E0e" secondAttribute="top" id="4Uv-Ya-RSa"/>
+                            <constraint firstItem="j7Z-85-W2w" firstAttribute="leading" secondItem="O0M-hC-oUk" secondAttribute="trailing" constant="8" id="5B3-bN-KBF"/>
                             <constraint firstItem="Wr5-9L-PJf" firstAttribute="trailing" secondItem="lKc-0M-E0e" secondAttribute="trailing" id="EY2-d6-OGF"/>
                             <constraint firstItem="0Jo-lH-mwc" firstAttribute="top" secondItem="7Mt-Yu-wlY" secondAttribute="bottom" constant="10" id="Qpx-a6-ob6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0Jo-lH-mwc" secondAttribute="trailing" constant="5" id="VgD-BN-Vgn"/>
@@ -391,10 +398,14 @@
                             <constraint firstAttribute="bottom" secondItem="Wr5-9L-PJf" secondAttribute="bottom" id="gPa-mP-0sf"/>
                             <constraint firstItem="Wr5-9L-PJf" firstAttribute="top" secondItem="O0M-hC-oUk" secondAttribute="bottom" constant="29" id="gfD-5H-b0b"/>
                             <constraint firstItem="O0M-hC-oUk" firstAttribute="leading" secondItem="7Mt-Yu-wlY" secondAttribute="leading" constant="15" id="mZR-If-eXV"/>
+                            <constraint firstItem="Wr5-9L-PJf" firstAttribute="top" secondItem="j7Z-85-W2w" secondAttribute="bottom" constant="29" id="n2g-Fc-I3y"/>
+                            <constraint firstItem="lKc-0M-E0e" firstAttribute="trailing" secondItem="j7Z-85-W2w" secondAttribute="trailing" constant="5" id="uVV-Dg-ERp"/>
+                            <constraint firstItem="j7Z-85-W2w" firstAttribute="top" secondItem="7Mt-Yu-wlY" secondAttribute="bottom" constant="31" id="w2J-2Q-kzM"/>
                             <constraint firstItem="O0M-hC-oUk" firstAttribute="top" secondItem="Dqv-aC-AgA" secondAttribute="topMargin" constant="207" id="yCH-jZ-boU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="couchName" destination="j7Z-85-W2w" id="FiZ-qv-g6H"/>
                         <outlet property="studiumImage" destination="7Mt-Yu-wlY" id="TrY-uZ-99o"/>
                         <outlet property="teamIconImage" destination="O0M-hC-oUk" id="0gN-7t-Qj7"/>
                         <outlet property="teamNameLabel" destination="0Jo-lH-mwc" id="qLh-YC-8oA"/>

@@ -9,6 +9,7 @@ import Foundation
 protocol TeamDetailsViewModelProtocol: AnyObject {
     var teamId : Int? { get set }
     var team:[Teams] { get }
+    var playerList : [Players] {get set}
     func getData()
     var bindDataToTVC : (()->()) { get set }
 }
@@ -18,6 +19,7 @@ class TeamDetailsViewModel: TeamDetailsViewModelProtocol {
     var path: Int
     var sport : String
     var team:[Teams] = []
+    var playerList : [Players] = []
     var teamId : Int?
     var networkManager : NetworkManagerProtocol
     init(sport: String = "football",networkManager: NetworkManagerProtocol = NetworkManager() ,path :Int = 0 ){
@@ -43,7 +45,8 @@ class TeamDetailsViewModel: TeamDetailsViewModelProtocol {
     func getData() {
         getData(type:TeamsResponse.self, sport: sport, handler:{[weak self] teams in
             guard let self else { return }
-            self.team = teams!.result
+            self.team = teams?.result ?? []
+            self.playerList = teams?.result[0].players ?? []
             self.bindDataToTVC()
         })
     }

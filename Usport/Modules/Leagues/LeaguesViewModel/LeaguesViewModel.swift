@@ -25,10 +25,12 @@ class LeaguesViewModel: LeaguesViewModelProtocol {
     var bindDataToViewController: (() -> Void) = {}
     var coreDataManager: CoreDataManagerProtocol
     
-    init(sport: String = "football",
-         networkManager: NetworkManagerProtocol = NetworkManager(),
-         coreDataManager: CoreDataManagerProtocol = CoreDataManager(),
-         path: Int = 0) {
+    init(
+        sport: String = "football",
+        networkManager: NetworkManagerProtocol = NetworkManager(),
+        coreDataManager: CoreDataManagerProtocol = CoreDataManager(),
+        path: Int = 0
+    ) {
         self.sport = sport
         self.networkManager = networkManager
         self.coreDataManager = coreDataManager
@@ -37,17 +39,17 @@ class LeaguesViewModel: LeaguesViewModelProtocol {
     }
     
     func didSelectSport() {
-        switch path {
+        sport = switch path {
         case 0:
-            sport = "football"
+            "football"
         case 1:
-            sport = "basketball"
+            "basketball"
         case 2:
-            sport = "cricket"
+            "cricket"
         case 3:
-            sport = "tennis"
+            "tennis"
         default:
-            sport = "football"
+            "football"
         }
     }
     
@@ -73,9 +75,7 @@ class LeaguesViewModel: LeaguesViewModelProtocol {
     
     private func handleFavoriteCase() {
         // Fetch favorite leagues from Core Data
-        
         let favoriteLeagues = coreDataManager.fetchFavouriteLeagues()
-        
         // Convert the fetched Core Data objects to your `FavoriteLeagueModel`
         let favoriteLeagueModels = favoriteLeagues.map { favoriteLeague in
             FavoriteLeagueModel(leagueKey: Int(favoriteLeague.leagueKey),

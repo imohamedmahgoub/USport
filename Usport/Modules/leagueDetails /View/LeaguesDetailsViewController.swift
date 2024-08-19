@@ -175,7 +175,8 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
             let vc = storyboard?.instantiateViewController(withIdentifier: "TDVC") as? TeamsViewController
             guard let vc = vc else {return }
             print(viewModel.homeTeams[indexPath.row].homeTeamKey)
-            vc.teamsDetailsViewModel?.teamId = viewModel.homeTeams[indexPath.row].homeTeamKey
+            vc.teamsDetailsViewModel.teamId = viewModel.homeTeams[indexPath.row].homeTeamKey
+            print(viewModel.homeTeams[indexPath.row].homeTeamKey)
             
             
             self.present(vc, animated: true)
