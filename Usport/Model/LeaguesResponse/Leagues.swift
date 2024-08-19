@@ -20,7 +20,13 @@ class Leagues : Codable {
     var countryName: String?
     var leagueLogo: String?
     var countryLogo: String?
-    
+    // matching initializer for the parameters you're trying to pass.
+    //for fav botton 
+    init(leagueKey: Int?, leagueName: String?, leagueLogo: String?) {
+            self.leagueKey = leagueKey
+            self.leagueName = leagueName
+            self.leagueLogo = leagueLogo
+        }
     enum CodingKeys: String, CodingKey{
         case leagueKey = "league_key"
         case leagueName = "league_name"

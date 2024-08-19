@@ -7,6 +7,7 @@
 
 import Foundation
 struct HomeTeamDetails: Hashable {
+    
     let homeTeamKey: Int
     let homeTeamName: String
     let homeTeamLogo: String
