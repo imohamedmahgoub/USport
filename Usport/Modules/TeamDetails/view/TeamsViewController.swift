@@ -6,73 +6,69 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TeamsViewController: UIViewController {
     var teamsDetailsViewModel : TeamDetailsViewModelProtocol?
     var index:Int?
     
-    @IBOutlet weak var TeamDetailsCollectionView: UICollectionView!
+    
+    @IBOutlet weak var teamsTableView: UITableView!
     @IBOutlet weak var studiumImage: UIImageView!
     @IBOutlet weak var teamIconImage: UIImageView!
     @IBOutlet weak var teamNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        TeamDetailsCollectionView.dataSource = self
-        TeamDetailsCollectionView.delegate = self
+        teamsTableView.dataSource = self
+        teamsTableView.delegate = self
+        
+        let nib = UINib(nibName: "TeamsTableViewCell", bundle: nil)
+        teamsTableView.register(nib, forCellReuseIdentifier: "TeamsTableViewCell")
+        
         teamsDetailsViewModel = TeamDetailsViewModel(path: index ?? 0)
         
-        teamsDetailsViewModel?.getData({ team in
+        teamsDetailsViewModel?.getData()
+        teamsDetailsViewModel?.bindDataToTVC = {
             
             DispatchQueue.main.async {
-                let teamImage = URL(string: (self.teamsDetailsViewModel?.team!.first!.teamLogo) ?? "")
+                let teamImage = URL(string: (self.teamsDetailsViewModel?.team[0].teamLogo) ?? "")
                 self.teamIconImage.kf.setImage(with:teamImage , placeholder: UIImage(systemName: "camera"))
                 self.teamIconImage.layer.cornerRadius = self.teamIconImage.frame.width / 2
-
-                self.studiumImage.image = UIImage(named: "AppIcon")
-                
-                self.teamNameLabel.text = self.teamsDetailsViewModel?.team?.first?.teamName
-                self.TeamDetailsCollectionView.reloadData()
+                self.studiumImage.image = UIImage(named: "Stadium")
+                self.teamNameLabel.text = self.teamsDetailsViewModel?.team.first?.teamName
+                self.teamsTableView.reloadData()
             }
-        })
-    }
-   
-}
-extension TeamsViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        //let team = teamsDetailsViewModel?.team?.first.
-        switch indexPath.row {
-        case 0:
-            cell.firstLabel.text = "Coach :"
-            cell.secondLabel.text = teamsDetailsViewModel?.team?.first?.coaches?.first?.coachName
-        case 1:
-            cell.firstLabel.text = "Leagues2:"
-            cell.secondLabel.text = "Mohamed2"
-        case 2:
-            cell.firstLabel.text = "Leagues3:"
-            cell.secondLabel.text = "Mohamed3"
-        case 3:
-            cell.firstLabel.text = "Leagues4:"
-            cell.secondLabel.text = "Mohamed4"
-        case 4:
-            cell.firstLabel.text = "Leagues5:"
-            cell.secondLabel.text = "Mohamed5"
-        case 5:
-            cell.firstLabel.text = "Leagues6:"
-            cell.secondLabel.text = "Mohamed6"
-        default:
-            cell.firstLabel.text = "Leagues7:"
-            cell.secondLabel.text = "Mohamed7"
+            
+            
         }
+    }
+    
+}
+extension TeamsViewController : UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return teamsDetailsViewModel?.team[0].players?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TeamsTableViewCell", for: indexPath) as! TeamTableViewCell
+        let team = teamsDetailsViewModel?.team[indexPath.row]
+        let playerImageUrl = URL(string: team?.players?[indexPath.row].playerImage ?? "")
+        
+        cell.playerImage.kf.setImage(with: playerImageUrl , placeholder: UIImage(systemName: "person"))
+        cell.playerName.text = team?.players?.first?.playerName
+        cell.playerNumber.text = team?.players?.first?.playerNumber
+        
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 135)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
-    
 }
+
+
+
+
+
+
+

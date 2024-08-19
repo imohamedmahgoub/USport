@@ -174,9 +174,11 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
         if indexPath.section == 5 {
             let vc = storyboard?.instantiateViewController(withIdentifier: "TDVC") as? TeamsViewController
             guard let vc = vc else {return }
-            vc.teamsDetailsViewModel?.teamsDetails = viewModel.homeTeams
+            print(viewModel.homeTeams[indexPath.row].homeTeamKey)
+            vc.teamsDetailsViewModel?.teamId = viewModel.homeTeams[indexPath.row].homeTeamKey
             
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            self.present(vc, animated: true)
         }
     }
 }
