@@ -25,6 +25,8 @@ class LeaguesDetailsViewController: UIViewController {
         
         setupCollectionViewLayout()
         viewModel.loadData()
+        viewModel.loadUpcomingEvents()
+
     }
     
     @IBAction func backAction(_ sender: Any) {
@@ -71,7 +73,7 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
         case 0, 2, 4:
             return 1
         case 1:
-            return 10
+             return viewModel.upComingEvents.count
         case 5:
             return viewModel.homeTeams.count
         case 3:
@@ -88,8 +90,27 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
         case 0:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)
         case 1:
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath)
-            cell?.backgroundColor = .systemGray
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! UpComingCollectionViewCell
+            
+            let event = viewModel.upComingEvents[indexPath.row]
+            
+            
+            if let homelogo = event.homeTeamLogo,
+               let url = URL(string: homelogo) {
+                cell.homeTeamLogo.kf.setImage(with: url)
+            }
+            if let awayLogo = event.awayTeamLogo,
+               let url = URL(string: awayLogo) {
+                cell.AwayTeamLogo.kf.setImage(with: url)
+            }
+            if let data = event.eventDate{
+              
+                cell.datalbl.text = data
+            }
+            if let teamHomeName = event.eventHomeTeam {
+                cell.homeTeamName.text = teamHomeName
+            }
+            return cell
         case 2:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath)
         case 3:
