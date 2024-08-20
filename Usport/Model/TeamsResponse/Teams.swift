@@ -18,13 +18,13 @@ struct TeamsResponse : Codable {
     }
 }
 
-class Teams : Codable {
+struct Teams : Codable {
     let teamKey : Int
     let teamName : String?
     let teamLogo : String?
     let players : [Players]?
     let coaches : [Coaches]?
-
+    
     enum CodingKeys: String, CodingKey {
         case teamKey = "team_key"
         case teamName = "team_name"
@@ -34,15 +34,15 @@ class Teams : Codable {
     }
 
 }
-class Players : Codable {
-    let playerKey : Int?
+struct Players : Codable {
+    let playerKey : Int
     let playerImage : String?
     let playerName : String?
     let playerNumber : String?
     let playerCountry : String?
     let playerType : String?
     let playerAge : String?
-
+    
     enum CodingKeys: String, CodingKey {
 
         case playerKey = "player_key"
@@ -55,7 +55,7 @@ class Players : Codable {
        
     }
 }
-class Coaches : Codable {
+struct Coaches : Codable {
     let coachName : String?
 
     enum CodingKeys: String, CodingKey {

@@ -66,11 +66,7 @@ class LeaguesViewModel: LeaguesViewModelProtocol {
     }
     
     private func getData<generic: Codable>(type: generic.Type, sport: String, handler: @escaping (generic?) -> Void) {
-        if InternetConnection.hasInternetConnect() {
             networkManager.getDataFromAPI(metValue: .leagues, teamId: 96, fromDate: "", toDate: "", leagueId: "", type: type, sport: sport, handler: handler)
-        } else {
-            print("no internet")
-        }
     }
     
     private func handleFavoriteCase() {
