@@ -12,7 +12,7 @@ class LeaguesDetailsViewModel {
     var selectedLeague: Leagues? 
     var events: [Event] = []
     var homeTeams: [HomeTeamDetails] = []
-    
+    var upComingEvents: [Event] = []
     var reloadCollectionView: (() -> Void)?
     
     private let networkManager = NetworkManager()
@@ -41,11 +41,24 @@ class LeaguesDetailsViewModel {
             }
         }
     }
+    func loadUpcomingEvents() {
+        guard let key = selectedLeague?.leagueKey else { return }
+        networkManager.getDataFromAPI(metValue: .fixtures, teamId: 0, fromDate: "2024-08-18", toDate: "2024-10-18", leagueId: "\(key)", type: EventsResponse.self, sport: "football") { [weak self] result in
+            guard let self = self else { return }
+            if let upcomingEvents = result?.result {
+                self.upComingEvents = upcomingEvents
+             
+                print(upComingEvents.count)
+                DispatchQueue.main.async {
+                    print("go to main")
+                    self.reloadCollectionView?()
+                }
+            }
+        
+    }
+}
     
        func toggleFavoriteStatus() {
-           print("loooooooooooooood")
-           print(selectedLeague?.leagueKey)
-           print(selectedLeague?.leagueLogo)
            guard let leagueKey = selectedLeague?.leagueKey else { return }
            let   leagueName = selectedLeague?.leagueName
             let leagueLogo = selectedLeague?.leagueLogo

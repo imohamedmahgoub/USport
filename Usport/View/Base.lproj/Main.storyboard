@@ -127,14 +127,79 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="231" height="32"/>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell1" id="8Qv-60-MoO">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell1" id="8Qv-60-MoO" customClass="UpComingCollectionViewCell" customModule="Usport" customModuleProvider="target">
                                         <rect key="frame" x="7" y="42" width="369" height="239"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sSm-Z6-Lnd">
                                             <rect key="frame" x="0.0" y="0.0" width="369" height="239"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vc" translatesAutoresizingMaskIntoConstraints="NO" id="K0S-dj-czg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="369" height="239"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2CR-rh-9dN">
+                                                    <rect key="frame" x="92.333333333333329" y="51.333333333333336" width="34" height="21.000000000000007"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football" translatesAutoresizingMaskIntoConstraints="NO" id="Die-zC-KNv">
+                                                    <rect key="frame" x="239.99999999999997" y="-904.66666666666663" width="73.666666666666657" height="2048.3333333333335"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cricket" translatesAutoresizingMaskIntoConstraints="NO" id="aWB-hq-54p">
+                                                    <rect key="frame" x="55.333333333333336" y="-904.66666666666663" width="73.666666666666657" height="2048.3333333333335"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="home team naem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGA-RL-8M7">
+                                                    <rect key="frame" x="71" y="175" width="132" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="away" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-RA-8kx">
+                                                    <rect key="frame" x="260" y="178" width="39" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="highlightedColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="data" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6d-0f-x7y">
+                                                    <rect key="frame" x="98" y="8" width="154" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <color key="textColor" systemColor="tertiarySystemBackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="e6d-0f-x7y" firstAttribute="centerX" secondItem="K0S-dj-czg" secondAttribute="centerX" id="3bb-i8-Y0A"/>
+                                                <constraint firstItem="aWB-hq-54p" firstAttribute="width" secondItem="K0S-dj-czg" secondAttribute="width" multiplier="0.2" id="4tq-1m-wIj"/>
+                                                <constraint firstItem="vKB-RA-8kx" firstAttribute="centerY" secondItem="IGA-RL-8M7" secondAttribute="centerY" id="5wT-ws-sV2"/>
+                                                <constraint firstItem="Die-zC-KNv" firstAttribute="width" secondItem="K0S-dj-czg" secondAttribute="width" multiplier="0.2" id="7Me-NQ-vpb"/>
+                                                <constraint firstItem="e6d-0f-x7y" firstAttribute="width" secondItem="K0S-dj-czg" secondAttribute="width" multiplier="0.5" id="Amd-FA-NTt"/>
+                                                <constraint firstItem="IGA-RL-8M7" firstAttribute="leading" secondItem="aWB-hq-54p" secondAttribute="leading" id="D4t-U5-jnJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="K0S-dj-czg" secondAttribute="bottom" id="D5U-Tp-nJn"/>
+                                                <constraint firstItem="aWB-hq-54p" firstAttribute="centerY" secondItem="K0S-dj-czg" secondAttribute="centerY" id="Fvr-cn-zJW"/>
+                                                <constraint firstItem="2CR-rh-9dN" firstAttribute="top" secondItem="e6d-0f-x7y" secondAttribute="bottom" constant="10" id="Gf7-pS-v0s"/>
+                                                <constraint firstAttribute="trailing" secondItem="K0S-dj-czg" secondAttribute="trailing" id="T14-XR-3sh"/>
+                                                <constraint firstItem="2CR-rh-9dN" firstAttribute="leading" secondItem="e6d-0f-x7y" secondAttribute="leading" id="VTg-zp-9qs"/>
+                                                <constraint firstItem="K0S-dj-czg" firstAttribute="leading" secondItem="sSm-Z6-Lnd" secondAttribute="leading" id="XAp-on-7My"/>
+                                                <constraint firstItem="IGA-RL-8M7" firstAttribute="top" secondItem="aWB-hq-54p" secondAttribute="bottom" constant="-975.66666666666697" id="ZXP-jH-L5k"/>
+                                                <constraint firstItem="K0S-dj-czg" firstAttribute="top" secondItem="sSm-Z6-Lnd" secondAttribute="top" id="a6s-Gn-Fse"/>
+                                                <constraint firstItem="e6d-0f-x7y" firstAttribute="top" secondItem="sSm-Z6-Lnd" secondAttribute="top" constant="10" id="axU-7E-JQn"/>
+                                                <constraint firstItem="Die-zC-KNv" firstAttribute="centerX" secondItem="K0S-dj-czg" secondAttribute="centerX" multiplier="1.5" id="fdY-hB-RXJ"/>
+                                                <constraint firstItem="aWB-hq-54p" firstAttribute="centerX" secondItem="K0S-dj-czg" secondAttribute="centerX" multiplier="0.5" id="kOf-yd-YMV"/>
+                                                <constraint firstItem="vKB-RA-8kx" firstAttribute="leading" secondItem="Die-zC-KNv" secondAttribute="leading" id="l80-4A-S1u"/>
+                                                <constraint firstItem="IGA-RL-8M7" firstAttribute="centerX" secondItem="aWB-hq-54p" secondAttribute="centerX" id="rgZ-uV-7Bg"/>
+                                                <constraint firstItem="Die-zC-KNv" firstAttribute="centerY" secondItem="K0S-dj-czg" secondAttribute="centerY" id="vrK-X8-VmL"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="369" height="239"/>
+                                        <connections>
+                                            <outlet property="AwayTeamLogo" destination="Die-zC-KNv" id="5Qi-a3-xSE"/>
+                                            <outlet property="awayTeamName" destination="vKB-RA-8kx" id="K0g-rC-7pP"/>
+                                            <outlet property="datalbl" destination="e6d-0f-x7y" id="aHn-uq-enU"/>
+                                            <outlet property="homeTeamLogo" destination="aWB-hq-54p" id="orz-12-oXb"/>
+                                            <outlet property="homeTeamName" destination="IGA-RL-8M7" id="tXt-71-qZu"/>
+                                            <outlet property="timelbl" destination="2CR-rh-9dN" id="7Aa-3o-aa7"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="cell3" id="lgT-hl-c5T">
                                         <rect key="frame" x="97.666666666666671" y="291" width="188" height="62"/>
@@ -302,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="od3-Fn-XVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2086.2595419847326" y="-492.25352112676057"/>
+            <point key="canvasLocation" x="2084.7328244274809" y="-492.25352112676057"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="dqY-2D-sXq">
@@ -441,13 +506,21 @@
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="104"/>
         <image name="cricket" width="2048" height="2048"/>
         <image name="figure.australian.football" catalog="system" width="128" height="124"/>
+        <image name="football" width="2048" height="2048"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="vc" width="7001" height="4001"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tableCellPlainBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
