@@ -10,7 +10,7 @@ import Kingfisher
 
 class TableViewController: UITableViewController {
     
-    var viewModel: LeaguesViewModelProtocol?
+    var leaguesViewModelForTable: LeaguesViewModelProtocol?
     var index: Int?
     
     var isFav: Bool = true
@@ -25,10 +25,10 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.RegisterNib(cell: LeaguesTableViewCell.self)
-        viewModel = LeaguesViewModel(path: index ?? 0)
-        viewModel?.isFav = self.isFav
-        viewModel?.getData()
-        viewModel?.bindDataToViewController = { [weak self] in
+        leaguesViewModelForTable = LeaguesViewModel(path: index ?? 0)
+        leaguesViewModelForTable?.isFav = self.isFav
+        leaguesViewModelForTable?.getData()
+        leaguesViewModelForTable?.bindDataToViewController = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -37,7 +37,7 @@ class TableViewController: UITableViewController {
         }
         
         setupBackgroundImageView()
-        if viewModel?.isFav == true{
+        if leaguesViewModelForTable?.isFav == true{
             self.navigationController?.navigationItem.title = "Favourite Leagues"
         }else {
             self.navigationController?.navigationItem.title = "Leagues"
@@ -46,7 +46,7 @@ class TableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Reload the table view every time the view appears
-        viewModel?.getData() // Ensure data is up-to-date
+        leaguesViewModelForTable?.getData() // Ensure data is up-to-date
         tableView.reloadData()
         
     }
@@ -62,7 +62,7 @@ class TableViewController: UITableViewController {
     }
     
     func updateUI() {
-        let shouldShowBackgroundImage = (viewModel?.leagues.count ?? 0) == 0
+        let shouldShowBackgroundImage = (leaguesViewModelForTable?.leagues.count ?? 0) == 0
         backgroundImageView.isHidden = !shouldShowBackgroundImage
     }
     
@@ -72,13 +72,13 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return (viewModel?.leagues.count) ?? 0
+        return (leaguesViewModelForTable?.leagues.count) ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaguesTableViewCell", for: indexPath) as! LeaguesTableViewCell
         
-        let league = viewModel?.leagues[indexPath.row]
+        let league = leaguesViewModelForTable?.leagues[indexPath.row]
         let image = URL(string: (league?.leagueLogo) ?? "")
         cell.leagueImage.kf.setImage(with: image, placeholder: UIImage(named: "football"))
         cell.leagueImage.layer.cornerRadius = cell.leagueImage.frame.width / 2
@@ -90,7 +90,7 @@ class TableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "LVC") as! LeaguesDetailsViewController
-        let selectedLeague = viewModel?.leagues[indexPath.row]
+        let selectedLeague = leaguesViewModelForTable?.leagues[indexPath.row]
         
         let leaguesDetailsViewModel = LeaguesDetailsViewModel()
         leaguesDetailsViewModel.selectedLeague = selectedLeague

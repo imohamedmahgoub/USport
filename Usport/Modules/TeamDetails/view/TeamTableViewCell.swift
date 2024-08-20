@@ -30,6 +30,8 @@ class TeamTableViewCell: UITableViewCell {
         teamView.layer.borderColor = UIColor.systemBlue.cgColor
         teamView.layer.borderWidth = 0.3
     }
+    
+    
 
 }
 

@@ -17,7 +17,6 @@ class LeaguesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCellUi()
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,5 +29,13 @@ class LeaguesTableViewCell: UITableViewCell {
         view.layer.borderColor = UIColor.systemBlue.cgColor
         view.layer.borderWidth = 0.3
     }
+    
+    @IBAction func didSelectYoutube(_ sender: Any) {
+        let leagueName = leagueName.text
+        let url = URL(string: "https://www.youtube.com/"+"@\(leagueName?.replacingOccurrences(of: " ", with: "") ?? "")")
+        guard let url = url else { return }
+        UIApplication.shared.open(url)
+    }
+    
     
 }
