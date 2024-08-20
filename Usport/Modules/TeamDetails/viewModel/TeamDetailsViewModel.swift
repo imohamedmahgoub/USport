@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol TeamDetailsViewModelProtocol: AnyObject {
+protocol TeamDetailsViewModelProtocol{
     var teamId : Int? { get set }
     var team:[Teams] { get }
     var playerList : [Players] {get set}
@@ -52,10 +52,6 @@ class TeamDetailsViewModel: TeamDetailsViewModelProtocol {
     }
     
     private func getData<generic : Codable>(type: generic.Type , sport : String ,handler : @escaping (generic?) -> Void) {
-        if InternetConnection.hasInternetConnect() {
             networkManager.getDataFromAPI(metValue: .teamsDetails, teamId: teamId ?? 100, fromDate: "", toDate: "", leagueId: "", type: type, sport: sport, handler: handler)
-        }else {
-            print("no internet")
-        }
     }
 }
