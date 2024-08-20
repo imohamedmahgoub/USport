@@ -73,84 +73,100 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
         case 0, 2, 4:
             return 1
         case 1:
-             return viewModel.upComingEvents.count
+            if (viewModel.upComingEvents.count != 0){
+                return viewModel.upComingEvents.count
+            }else {
+                return 1
+            }
         case 5:
             return viewModel.homeTeams.count
         case 3:
-            return viewModel.events.count
+            if(viewModel.events.count != 0) {
+                return viewModel.events.count
+            }else{
+                return 1
+            }
         default:
             return 1
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell: UICollectionViewCell?
-        
         switch indexPath.section {
         case 0:
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! UpComingCollectionViewCell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)
             
+        case 1:
+            if viewModel.upComingEvents.isEmpty {
+                let noDataCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell7", for: indexPath) as! NoInternetcell
+                return noDataCell
+            }
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! UpComingCollectionViewCell
             let event = viewModel.upComingEvents[indexPath.row]
             
-            
-            if let homelogo = event.homeTeamLogo,
-               let url = URL(string: homelogo) {
+            if let homeLogo = event.homeTeamLogo, let url = URL(string: homeLogo) {
                 cell.homeTeamLogo.kf.setImage(with: url)
             }
-            if let awayLogo = event.awayTeamLogo,
-               let url = URL(string: awayLogo) {
+            
+            if let awayLogo = event.awayTeamLogo, let url = URL(string: awayLogo) {
                 cell.AwayTeamLogo.kf.setImage(with: url)
             }
-            if let data = event.eventDate{
-              
-                cell.datalbl.text = data
-            }
-            if let teamHomeName = event.eventHomeTeam {
-                cell.homeTeamName.text = teamHomeName
-            }
-            return cell
-        case 2:
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath)
-        case 3:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath) as! ScoreCell
             
-            let event = viewModel.events[indexPath.row]
-            
-            if let homeTeamLogoURL = event.homeTeamLogo, !homeTeamLogoURL.isEmpty {
-                cell.homeTeamLogo.kf.setImage(with: URL(string: homeTeamLogoURL))
-            } else {
-                cell.homeTeamLogo.image = UIImage(named: "football") //
-            }
-            
-            if let awayTeamLogoURL = event.awayTeamLogo, !awayTeamLogoURL.isEmpty {
-                cell.awayTeamLogo.kf.setImage(with: URL(string: awayTeamLogoURL))
-            } else {
-                cell.awayTeamLogo.image = UIImage(named: "football") //
-            }
-            
-            // Set event final result, home team name, and away team name
-            cell.resultLbl.text = event.eventFinalResult
-            cell.homeTeamName.text = event.eventHomeTeam
+            cell.datalbl?.text = event.eventDate
+            cell.homeTeamName?.text = event.eventHomeTeam
             cell.awayTeamName.text = event.eventAwayTeam
             
             return cell
+            
+        case 2:
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath)
+            
+        case 3:
+            
+            if viewModel.events.isEmpty {
+                let noDataCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell7", for: indexPath) as! NoInternetcell
+                return noDataCell
+            }
+            let scoreCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath) as! ScoreCell
+            let event = viewModel.events[indexPath.row]
+
+            
+            if let homeTeamLogoURL = event.homeTeamLogo, !homeTeamLogoURL.isEmpty {
+                scoreCell.homeTeamLogo.kf.setImage(with: URL(string: homeTeamLogoURL))
+            } else {
+                scoreCell.homeTeamLogo.image = UIImage(named: "football")
+            }
+            
+            if let awayTeamLogoURL = event.awayTeamLogo, !awayTeamLogoURL.isEmpty {
+                scoreCell.awayTeamLogo.kf.setImage(with: URL(string: awayTeamLogoURL))
+            } else {
+                scoreCell.awayTeamLogo.image = UIImage(named: "football")
+            }
+            scoreCell.homeTeamName.text = event.eventHomeTeam
+            scoreCell.awayTeamName.text = event.eventAwayTeam
+            scoreCell.resultLbl.text = event.eventFinalResult
+            return scoreCell
+            
         case 4:
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell5", for: indexPath)
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "cell5", for: indexPath)
+            
         case 5:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell6", for: indexPath) as! TeamCollectionViewCell
+            
             if indexPath.row < viewModel.homeTeams.count {
                 let team = viewModel.homeTeams[indexPath.row]
-                cell.teamImg.kf.setImage(with: URL(string: team.homeTeamLogo))
+                if let logoURL = URL(string: team.homeTeamLogo) {
+                    cell.teamImg.kf.setImage(with: logoURL)
+                }
                 cell.backgroundColor = .systemGray
-                return cell
             }
+            
+            return cell
+            
         default:
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath)
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath)
         }
-        
-        return cell!
     }
     
     // Layout configuration methods go here
@@ -195,9 +211,10 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
         if indexPath.section == 5 {
             let vc = storyboard?.instantiateViewController(withIdentifier: "TDVC") as? TeamsViewController
             guard let vc = vc else {return }
-            print(viewModel.homeTeams[indexPath.row].homeTeamKey)
+           
+            
             vc.teamsDetailsViewModel.teamId = viewModel.homeTeams[indexPath.row].homeTeamKey
-            print(viewModel.homeTeams[indexPath.row].homeTeamKey)
+         
             
             
             self.present(vc, animated: true)
