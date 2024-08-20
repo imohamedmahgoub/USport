@@ -9,8 +9,15 @@ import UIKit
 
 class LeaguesDetailsViewController: UIViewController {
     
-    
+    @IBOutlet var favoritBotton: UIBarButtonItem!
     var viewModel = LeaguesDetailsViewModel()
+    var  isFavorite =  false {
+        didSet {
+            favoritBotton.image = UIImage(systemName:  (isFavorite ? "heart.fill" : "heart")
+            )
+        
+        }
+    }
     
     @IBOutlet var collectiontview: UICollectionView!
     override func viewDidLoad() {
@@ -26,6 +33,7 @@ class LeaguesDetailsViewController: UIViewController {
         setupCollectionViewLayout()
         viewModel.loadData()
         viewModel.loadUpcomingEvents()
+        isFavorite = viewModel.isFavorite()
 
     }
     
@@ -34,16 +42,19 @@ class LeaguesDetailsViewController: UIViewController {
     }
     
     @IBAction func addToFavoriteAction(_ sender: Any) {
-        viewModel.toggleFavoriteStatus()
-          
-          let isFavorite = viewModel.isFavorite()
-          let message = isFavorite ? "Added to Favorites" : "Removed from Favorites"
-          
-          let alert = UIAlertController(title: message, message: "League has been \(isFavorite ? "added to" : "removed from") your favorites.", preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-          present(alert, animated: true, completion: nil)
+        
+        
+        let message = !isFavorite ? "Added to Favorites" : "Removed from Favorites"
+        let alert = UIAlertController(title: message, message: "League will be \(!isFavorite ? "added to" : "removed from") your favorites.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { UIAlertAction in
+            self.viewModel.toggleFavoriteStatus()
+            self.isFavorite.toggle()
+        }))
+        alert.addAction(UIAlertAction(title: "cancel", style: .destructive, handler:  nil))
+        present(alert, animated: true, completion: nil)
     }
 }
+
 
 extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionViewDataSource {
     private func setupCollectionViewLayout() {
@@ -158,8 +169,9 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
                 let team = viewModel.homeTeams[indexPath.row]
                 if let logoURL = URL(string: team.homeTeamLogo) {
                     cell.teamImg.kf.setImage(with: logoURL)
+                    cell.teamName.text = team.homeTeamName
                 }
-                cell.backgroundColor = .systemGray
+                //
             }
             
             return cell
@@ -224,3 +236,4 @@ extension LeaguesDetailsViewController :UICollectionViewDelegate,UICollectionVie
 extension LeaguesDetailsViewController {
     
 }
+
