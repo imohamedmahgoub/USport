@@ -72,22 +72,29 @@ extension HomeViewController :  UICollectionViewDelegate,UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if InternetConnection.hasInternetConnect() {
+        InternetConnection.checkURL(completion: { isConnect in
+            print("i am here ")
+            print(isConnect)
+            if isConnect {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TVC") as? TableViewController
+                guard let vc = vc else { return }
+                print("in the second")
+                vc.index = indexPath.row
+                vc.isFav = false
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else {
+                let message =  "No internet Connectivity"
+                
+                let alert = UIAlertController(title: message, message: "please check your WIFI", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
             
-            let vc = storyboard?.instantiateViewController(withIdentifier: "TVC") as? TableViewController
-            guard let vc = vc else { return }
-            vc.index = indexPath.row
-            vc.isFav = false
-            self.navigationController?.pushViewController(vc, animated: true)
-        }else {
-            let message =  "No internet Connectivity"
-            
-            let alert = UIAlertController(title: message, message: "please check your WIFI", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            
-            
-            present(alert, animated: true, completion: nil)
+           
         }
-    }
 }

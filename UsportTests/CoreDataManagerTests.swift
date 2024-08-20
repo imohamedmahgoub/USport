@@ -9,6 +9,7 @@ import XCTest
 import CoreData
 @testable import Usport
 
+
 class CoreDataManagerTests: XCTestCase {
     
     var coreDataManager: CoreDataManager!

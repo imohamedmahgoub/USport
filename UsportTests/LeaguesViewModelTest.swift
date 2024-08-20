@@ -50,7 +50,6 @@ class LeaguesViewModelTests: XCTestCase {
     }
 
     func testGetData_NonFavoriteCase_Failure() {
-        // Given
         mockNetworkManager.shouldReturnError = true
         viewModel.isFav = false
 
@@ -60,11 +59,9 @@ class LeaguesViewModelTests: XCTestCase {
             expectation.fulfill()
         }
 
-        // When
         viewModel.getData()
 
-        // Then
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         XCTAssertEqual(viewModel.leagues.count, 0)
     }
 }
