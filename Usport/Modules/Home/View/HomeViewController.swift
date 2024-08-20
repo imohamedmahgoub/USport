@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 class HomeViewController: UIViewController {
  
 
@@ -72,10 +71,23 @@ extension HomeViewController :  UICollectionViewDelegate,UICollectionViewDataSou
         return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "TVC") as? TableViewController
-        guard let vc = vc else { return }
-        vc.index = indexPath.row
-        vc.isFav = false
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if InternetConnection.hasInternetConnect() {
+            
+            let vc = storyboard?.instantiateViewController(withIdentifier: "TVC") as? TableViewController
+            guard let vc = vc else { return }
+            vc.index = indexPath.row
+            vc.isFav = false
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else {
+            let message =  "No internet Connectivity"
+            
+            let alert = UIAlertController(title: message, message: "please check your WIFI", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            
+            
+            present(alert, animated: true, completion: nil)
+        }
     }
 }

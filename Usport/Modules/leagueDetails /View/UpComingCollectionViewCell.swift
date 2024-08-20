@@ -9,10 +9,10 @@ import UIKit
 
 class UpComingCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet var timelbl: UILabel!
-    @IBOutlet var datalbl: UILabel!
-    @IBOutlet var awayTeamName: UILabel!
-    @IBOutlet var homeTeamName: UILabel!
+    @IBOutlet var timelbl: UILabel?
+    @IBOutlet var datalbl: UILabel?
+    @IBOutlet var homeTeamName: UILabel?
     @IBOutlet var AwayTeamLogo: UIImageView!
+    @IBOutlet var awayTeamName: UILabel!
     @IBOutlet var homeTeamLogo: UIImageView!
 }
