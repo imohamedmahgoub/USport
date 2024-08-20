@@ -37,6 +37,9 @@
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="play.rectangle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didSelectYoutube:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6AA-5g-Ryk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.87782567493694341" green="0.87782567493694341" blue="0.87782567493694341" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
